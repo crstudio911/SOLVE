@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solve_Ai</title>
+<link rel="icon" href="../img/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="start.css">
+</head>
+<body>
+
+<canvas class="stage-canvas" id="stage-canvas"></canvas>
+<div class="stage-vignette"></div>
+
+<div class="hud-top">
+  <div class="hud-brand">
+    <span class="img-slot">
+      <img id="hud-logo" alt="Solve_Ai">
+      <i class="fa-solid fa-bolt img-slot-fallback"></i>
+    </span>
+    <span>Solve_Ai</span>
+  </div>
+  <div class="clock" id="clock">
+    <span class="clock-time" id="clock-time"></span>
+    <span class="clock-date" id="clock-date"></span>
+  </div>
+</div>
+
+<div class="breadcrumb" id="breadcrumb">امشي خطوه بـ خطوه</div>
+
+<div class="steps-track" id="steps-track"></div>
+
+<main class="stage">
+
+  <section class="screen active" data-screen="greeting">
+    <div class="greet-orb"></div>
+    <p class="greet-eyebrow">SOLVE_AI // ONBOARDING</p>
+    <div class="greet-word" id="greet-word">Hi</div>
+    <button class="btn-primary reveal-on-end" id="btn-start-journey">
+      <span>ابدء الان</span><i class="fa-solid fa-arrow-left"></i>
+    </button>
+  </section>
+
+  <section class="screen" data-screen="whoareyou">
+    <p class="eyebrow-tag">STEP 01</p>
+    <p class="prompt-label">انت مين؟</p>
+    <p class="prompt-sub">اختار الوصف اللي يناسبك عشان نوجهك صح</p>
+    <div class="choice-row">
+      <button class="choice-card" id="btn-new-customer">
+        <i class="fa-solid fa-user-plus"></i>
+        <span class="choice-title">عميل جديد</span>
+        <span class="choice-desc">هبدأ الرحله من الاول خطوه بخطوه</span>
+      </button>
+      <button class="choice-card" id="btn-old-customer">
+        <i class="fa-solid fa-user-check"></i>
+        <span class="choice-title">عميل قديم</span>
+        <span class="choice-desc">عندي كود وعايز اكمل بسرعه</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="oldcode">
+    <button class="btn-back" id="btn-back-from-oldcode"><i class="fa-solid fa-arrow-right"></i> رجوع</button>
+    <p class="eyebrow-tag">VERIFICATION</p>
+    <p class="prompt-label">ادخل الكود الخاص بك</p>
+    <p class="prompt-sub">الكود اللي استلمته وقت الاشتراك</p>
+    <div class="code-field">
+      <input type="text" id="old-code-input" placeholder="اكتب الكود هنا" autocomplete="off" spellcheck="false">
+      <button class="btn-primary" id="btn-check-code"><span>تأكيد</span><i class="fa-solid fa-check"></i></button>
+    </div>
+    <p class="field-error" id="code-error"><i class="fa-solid fa-circle-exclamation"></i> الكود غير صحيح، برجاء المحاوله مره اخرى</p>
+  </section>
+
+  <section class="screen" data-screen="oldvideo">
+    <p class="eyebrow-tag">WELCOME BACK</p>
+    <p class="prompt-label small">اهلا بعودتك</p>
+    <div class="video-panel">
+      <div class="video-side">
+        <button class="btn-outline" id="btn-show-old-video"><i class="fa-solid fa-circle-play"></i> مشاهده فيديو الشرح</button>
+        <div class="video-box hidden" id="old-video-box">
+          <div class="custom-player" data-player>
+            <video id="old-video" playsinline disablePictureInPicture disableRemotePlayback></video>
+            <div class="player-overlay" data-overlay>
+              <button type="button" class="player-big-play" data-bigplay aria-label="تشغيل"><i class="fa-solid fa-play"></i></button>
+            </div>
+            <div class="player-controls">
+              <button type="button" class="player-btn" data-playpause aria-label="تشغيل / إيقاف"><i class="fa-solid fa-play"></i></button>
+              <span class="player-time" data-current>0:00</span>
+              <div class="player-seek" data-seek>
+                <div class="player-seek-buffered" data-buffered></div>
+                <div class="player-seek-fill" data-seekfill></div>
+                <div class="player-seek-thumb" data-thumb></div>
+              </div>
+              <span class="player-time" data-duration>0:00</span>
+              <button type="button" class="player-btn" data-mute aria-label="كتم الصوت"><i class="fa-solid fa-volume-high"></i></button>
+              <button type="button" class="player-btn player-fs" data-fullscreen aria-label="ملء الشاشة"><i class="fa-solid fa-expand"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="btn-primary" id="btn-download-old" href="#"><span>تحميل الاضافه</span><i class="fa-solid fa-download"></i></a>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="newvideo">
+    <p class="eyebrow-tag">STEP 02</p>
+    <p class="prompt-label small">فيديو الشرح</p>
+    <div class="video-box wide">
+      <div class="custom-player" data-player>
+        <video id="new-video" playsinline disablePictureInPicture disableRemotePlayback></video>
+        <div class="player-overlay" data-overlay>
+          <button type="button" class="player-big-play" data-bigplay aria-label="تشغيل"><i class="fa-solid fa-play"></i></button>
+        </div>
+        <div class="player-controls">
+          <button type="button" class="player-btn" data-playpause aria-label="تشغيل / إيقاف"><i class="fa-solid fa-play"></i></button>
+          <span class="player-time" data-current>0:00</span>
+          <div class="player-seek" data-seek>
+            <div class="player-seek-buffered" data-buffered></div>
+            <div class="player-seek-fill" data-seekfill></div>
+            <div class="player-seek-thumb" data-thumb></div>
+          </div>
+          <span class="player-time" data-duration>0:00</span>
+          <button type="button" class="player-btn" data-mute aria-label="كتم الصوت"><i class="fa-solid fa-volume-high"></i></button>
+          <button type="button" class="player-btn player-fs" data-fullscreen aria-label="ملء الشاشة"><i class="fa-solid fa-expand"></i></button>
+        </div>
+      </div>
+    </div>
+    <p class="video-caption">اتفرج علي فيديو الشرح كامل</p>
+    <p class="warning-note"><i class="fa-solid fa-triangle-exclamation"></i> في حاله عدم مشاهده فيديو الشرح كامل لن تتمكن من عمليه التثبيت الصحيحه، برجاء المشاهده للنهايه لتجنب اي اخطاء</p>
+    <button class="btn-primary" id="btn-watched-continue"><span>اتفرجت كمل</span><i class="fa-solid fa-arrow-left"></i></button>
+  </section>
+
+  <section class="screen" data-screen="download">
+    <p class="eyebrow-tag">STEP 03</p>
+    <p class="prompt-label small">تمام، حمل الاضافه من هنا</p>
+    <a class="btn-primary btn-download-main" id="btn-download-main" href="#">
+      <span>تحميل</span><i class="fa-solid fa-download"></i>
+    </a>
+    <div class="try-card">
+      <div class="try-card-media">
+        <span class="img-slot img-slot-square">
+          <img id="try-img" alt="جرب الاضافه">
+          <i class="fa-solid fa-puzzle-piece img-slot-fallback"></i>
+        </span>
+      </div>
+      <p>تقدر تضغط علي الزر ده عشان تجرب بنفسك الاضافه</p>
+    </div>
+    <button class="btn-outline" id="btn-downloaded-continue"><span>تمام حملتها نكمل</span><i class="fa-solid fa-arrow-left"></i></button>
+  </section>
+
+  <section class="screen" data-screen="tryit">
+    <p class="eyebrow-tag">STEP 04</p>
+    <p class="prompt-label">اضغط علي التجربه وجرب. هتلاقي زر التجربه في الاضافه</p>
+    <div class="pulse-hint"><i class="fa-solid fa-hand-pointer"></i></div>
+    <button class="btn-primary" id="btn-tried-continue"><span>ضغطت كمل</span><i class="fa-solid fa-arrow-left"></i></button>
+  </section>
+
+  <section class="screen" data-screen="qna">
+    <p class="eyebrow-tag">STEP 05</p>
+    <p class="prompt-label small">لما تخلص التجربه تماما دوس كمل</p>
+    <div class="qna-panel">
+      <div class="qna-answer-slot" id="qna-answer-slot">
+        <p class="qna-placeholder"><i class="fa-solid fa-hand-pointer"></i> اضغط علي اي سؤال عشان تشوف اجابته هنا</p>
+      </div>
+      <div class="qna-questions" id="qna-questions"></div>
+    </div>
+    <button class="btn-primary" id="btn-qna-continue"><span>كمل</span><i class="fa-solid fa-arrow-left"></i></button>
+    <p class="hint-note">اسئله احتمال تُسأل</p>
+  </section>
+
+  <section class="screen" data-screen="form">
+    <p class="eyebrow-tag">STEP 06</p>
+    <p class="prompt-label small">شويه بيانات ونخلص</p>
+    <form class="data-form" id="data-form" novalidate>
+      <label>
+        <span>الاسم</span>
+        <input type="text" id="form-name" required autocomplete="off">
+      </label>
+      <label>
+        <span>رقم هاتف شغال واتساب و مكالمات</span>
+        <input type="tel" id="form-phone" required autocomplete="off">
+      </label>
+      <label>
+        <span>رأيك في الاضافه؟</span>
+        <textarea id="form-opinion" rows="3" required></textarea>
+      </label>
+      <label class="terms-row">
+        <input type="checkbox" id="form-terms">
+        <span>I agree to the <a href="#" id="terms-link-start" target="_blank" rel="noopener">Terms of Service</a></span>
+      </label>
+      <button type="submit" class="btn-primary" id="btn-form-continue" disabled><span>كمل</span><i class="fa-solid fa-arrow-left"></i></button>
+    </form>
+  </section>
+
+  <section class="screen" data-screen="invoice">
+    <p class="eyebrow-tag">DONE</p>
+    <p class="prompt-label small">تمام، فاتورتك جاهزه</p>
+    <div class="invoice-frame">
+      <canvas id="invoice-canvas" width="640" height="900"></canvas>
+    </div>
+    <button class="btn-primary" id="btn-download-invoice"><span>حفظ صوره الفاتوره</span><i class="fa-solid fa-download"></i></button>
+    <p class="final-note"><i class="fa-solid fa-paper-plane"></i> مهم: ابعت صورة الفاتورة اللي اتحفظت على جهازك دلوقتي للشخص اللي بتتواصل معاه</p>
+  </section>
+
+</main>
+
+<script src="start.js"></script>
+</body>
+</html>
