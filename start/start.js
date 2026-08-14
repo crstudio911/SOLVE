@@ -4,7 +4,7 @@ const CONFIG = {
   TRY_IMG_SRC: "../img/tre.png",
   TERMS_URL: "https://crstudio911.github.io/hhkehbkhf6347WFGHJ649iffk/",
   DOWNLOAD_URL: "https://drive.google.com/file/d/1e6TyeRzMn5OKD1sq2aM7cEmREsFutI8T/view?usp=sharing",
-  SECRET_WORD: "-SOLVE-",
+  SECRET_WORD: "SOLVE-",
   GREETING_WORDS: ["Hi", "مرحبا", "Bonjour", "你好", "Ciao", "هيا بنا"],
   QNA: [{
     q: "أمن علي الحساب؟",
