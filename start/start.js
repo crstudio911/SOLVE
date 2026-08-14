@@ -3,7 +3,7 @@ const CONFIG = {
   VIDEO_SRC: "../vid/vid.mp4",
   TRY_IMG_SRC: "../img/tre.png",
   TERMS_URL: "https://crstudio911.github.io/hhkehbkhf6347WFGHJ649iffk/",
-  DOWNLOAD_URL: "solve-v10",
+  DOWNLOAD_URL: "solveV10.zip",
   SECRET_WORD: "-SOLVE-",
   GREETING_WORDS: ["Hi", "مرحبا", "Bonjour", "你好", "Ciao", "هيا بنا"],
   QNA: [{
